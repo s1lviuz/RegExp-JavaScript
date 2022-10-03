@@ -10,13 +10,13 @@ async function start() {
     .then(response => response.text())
     .then(text => text.match(/<(\h2 class="post__title"+)[\s\S]*?>([\s\S]*?)<\/\h2>/g))
     .then(list => list.forEach(item => {
-        let news = document.createElement('div')
+        const news = document.createElement('div')
         news.innerHTML = item
         app.append(news)
     }))
     .catch(() => {
-        let error = document.createElement('h2')
-        error.innerHTML = 'Para carregar esta página é necessário que você solicite um acesso ao proxy neste <a href="https://cors-anywhere.herokuapp.com/corsdemo" target="_blank">link</a>, depois volte e atualize essa página :)'
+        const error = document.createElement('h2')
+        error.innerHTML = 'Para carregar esta página é necessário que você solicite um acesso temporario a API CORS Anywhere. Isso pode ser feito neste <a href="https://cors-anywhere.herokuapp.com/corsdemo" target="_blank">link</a>, depois volte e atualize a página :)'
         app.append(error)
     })
     .finally(() => loading.remove())
